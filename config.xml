@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<widget xmlns:gap = "http://phonegap.com/ns/1.0" id="com.emanueleferonato.bwban" version="0.1.1">
+<widget xmlns:gap = "http://phonegap.com/ns/1.0" id="com.emanueleferonato.bwban" version="0.2.1">
 	<name>BWBan</name>
 	<description>My first PhoneGap stuff</description>
 	<author email="info@emanueleferonato.com" href="http://www.emanueleferonato.com">Emanuele Feronato</author>
