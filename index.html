@@ -5,20 +5,38 @@
 	<title>BWBAN by Emanuele Feronato</title>
 	<link href="style.css" rel="stylesheet" type="text/css"/>
 	<script src = "jquery.js"></script>
-	<script src = "pep.js"></script>
+	<script src = "touchswipe.js"></script>
 	<script>
 		$(document).ready(function(){
-			$("#gamecontrols").pep({
-				useCSSTranslation: false,
-  				constrainTo: "window"
-			});
                $(".control").on("touchend click",function(){
                     var k = $(this).attr("id").split("_");
                     var keyPressed = parseInt(k[1]);
-                    javascript:checkKey({
+                    checkKey({
                          keyCode:keyPressed
-                    }, true);
+                    },true);
                })
+               $(document).swipe({
+				swipe:function(event,direction,distance,duration,fingerCount) {
+          			switch(direction){
+						case "left":
+							checkKey({keyCode:37},true);
+							break;
+						case "right":
+							checkKey({keyCode:39},true);
+							break;
+						case "up":
+							checkKey({keyCode:38},true);
+							break;
+						case "down":
+							checkKey({keyCode:40},true);
+							break;
+					}  
+        			},
+        			tap:function(event, target){
+					checkKey({keyCode:88},true);	
+				},   
+				threshold:0
+      		});
 		});
 	</script>
 </head> 
@@ -27,18 +45,8 @@
 	<div class="gameContainer"> 
 		<canvas id="gameCanvas" onmousemove="mouseMove(event)" onmouseout="mouseOut()" onkeydown="keyDown()"></canvas> 
 	</div>
-	<div id = "gamecontrols">
-		<div class = "empty"></div>
-          <div class = "control up" id = "ctrl_38"></div>
-          <div class = "empty dragme"></div>
-          <div class = "control left" id = "ctrl_37"></div>
-          <div class = "control action" id = "ctrl_88"></div>
-          <div class = "control right" id = "ctrl_39"></div>
-          <div class = "control undo" id = "ctrl_90"></div>
-          <div class = "control down" id = "ctrl_40"></div>
-          <div class = "control restart" id = "ctrl_82"></div>
-          <div style = "clear:both"></div>
-	</div>
+	<div class = "control undo" id = "ctrl_90"></div>
+	<div class = "control restart" id = "ctrl_82"></div>
 	<script src = "init.js"></script>
 	<script src = "tags.js"></script>
 	<script src = "fonts.js"></script>
